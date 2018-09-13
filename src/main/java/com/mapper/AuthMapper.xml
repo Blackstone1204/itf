@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AuthMapper">
+  <resultMap id="BaseResultMap" type="com.model.Auth">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="role_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="can_read_self" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="can_read_other" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="can_edit_self" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="can_edit_other" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="can_add_self" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="can_add_other" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="can_del_self" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="can_del_other" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="is_delete" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, role_id, can_read_self, can_read_other, can_edit_self, can_edit_other, can_add_self, 
+    can_add_other, can_del_self, can_del_other, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from auth
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from auth
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Auth">
+    insert into auth (id, role_id, can_read_self, 
+      can_read_other, can_edit_self, can_edit_other, 
+      can_add_self, can_add_other, can_del_self, 
+      can_del_other, is_delete)
+    values (#{id,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{canReadSelf,jdbcType=INTEGER}, 
+      #{canReadOther,jdbcType=INTEGER}, #{canEditSelf,jdbcType=INTEGER}, #{canEditOther,jdbcType=INTEGER}, 
+      #{canAddSelf,jdbcType=INTEGER}, #{canAddOther,jdbcType=INTEGER}, #{canDelSelf,jdbcType=INTEGER}, 
+      #{canDelOther,jdbcType=INTEGER}, #{isDelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Auth">
+    insert into auth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="canReadSelf != null">
+        can_read_self,
+      </if>
+      <if test="canReadOther != null">
+        can_read_other,
+      </if>
+      <if test="canEditSelf != null">
+        can_edit_self,
+      </if>
+      <if test="canEditOther != null">
+        can_edit_other,
+      </if>
+      <if test="canAddSelf != null">
+        can_add_self,
+      </if>
+      <if test="canAddOther != null">
+        can_add_other,
+      </if>
+      <if test="canDelSelf != null">
+        can_del_self,
+      </if>
+      <if test="canDelOther != null">
+        can_del_other,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="canReadSelf != null">
+        #{canReadSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canReadOther != null">
+        #{canReadOther,jdbcType=INTEGER},
+      </if>
+      <if test="canEditSelf != null">
+        #{canEditSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canEditOther != null">
+        #{canEditOther,jdbcType=INTEGER},
+      </if>
+      <if test="canAddSelf != null">
+        #{canAddSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canAddOther != null">
+        #{canAddOther,jdbcType=INTEGER},
+      </if>
+      <if test="canDelSelf != null">
+        #{canDelSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canDelOther != null">
+        #{canDelOther,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Auth">
+    update auth
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="canReadSelf != null">
+        can_read_self = #{canReadSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canReadOther != null">
+        can_read_other = #{canReadOther,jdbcType=INTEGER},
+      </if>
+      <if test="canEditSelf != null">
+        can_edit_self = #{canEditSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canEditOther != null">
+        can_edit_other = #{canEditOther,jdbcType=INTEGER},
+      </if>
+      <if test="canAddSelf != null">
+        can_add_self = #{canAddSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canAddOther != null">
+        can_add_other = #{canAddOther,jdbcType=INTEGER},
+      </if>
+      <if test="canDelSelf != null">
+        can_del_self = #{canDelSelf,jdbcType=INTEGER},
+      </if>
+      <if test="canDelOther != null">
+        can_del_other = #{canDelOther,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Auth">
+    update auth
+    set role_id = #{roleId,jdbcType=VARCHAR},
+      can_read_self = #{canReadSelf,jdbcType=INTEGER},
+      can_read_other = #{canReadOther,jdbcType=INTEGER},
+      can_edit_self = #{canEditSelf,jdbcType=INTEGER},
+      can_edit_other = #{canEditOther,jdbcType=INTEGER},
+      can_add_self = #{canAddSelf,jdbcType=INTEGER},
+      can_add_other = #{canAddOther,jdbcType=INTEGER},
+      can_del_self = #{canDelSelf,jdbcType=INTEGER},
+      can_del_other = #{canDelOther,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

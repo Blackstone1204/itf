@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TargetMapper">
+  <resultMap id="BaseResultMap" type="com.model.Target">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="domain" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="parent_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="lev" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="account_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="method" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_dir" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_delete" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.lang.String" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.lang.String" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,title , domain, url, parent_id, lev, account_id,method,is_dir,is_delete,create_time,update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from target
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from target
+  </select>
+
+  <select id="selectChildren"  parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from target where parent_id = #{parentId,jdbcType=VARCHAR} and is_delete='0' order by is_dir desc,create_time desc
+  </select>
+  
+  <select id="selectTopChildren" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from target where parent_id ="-1"
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from target
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Target">
+    insert into target (id, title, domain, 
+      url, parent_id, lev, 
+      account_id,method,is_dir)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{lev,jdbcType=VARCHAR}, 
+      #{accountId,jdbcType=VARCHAR},#{method,jdbcType=VARCHAR},#{isDir,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.model.Target">
+    update target
+    set title = #{title,jdbcType=VARCHAR},
+      domain = #{domain,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      lev = #{lev,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      is_dir= #{isDir,jdbcType=VARCHAR},
+      is_delete= #{isDelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

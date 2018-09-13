@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ResultMapper">
+  <resultMap id="BaseResultMap" type="com.model.Result">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="plan_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_success" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="data" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="heards" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="config" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="json" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_delete" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_id, is_success, status, status_code, data, heards, config, json, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from result
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from result
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Result">
+    insert into result (id, plan_id, is_success, 
+      status, status_code, data, 
+      heards, config, json, 
+      is_delete)
+    values (#{id,jdbcType=VARCHAR}, #{planId,jdbcType=VARCHAR}, #{isSuccess,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{statusCode,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, 
+      #{heards,jdbcType=VARCHAR}, #{config,jdbcType=VARCHAR}, #{json,jdbcType=VARCHAR}, 
+      #{isDelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Result">
+    insert into result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="isSuccess != null">
+        is_success,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="statusCode != null">
+        status_code,
+      </if>
+      <if test="data != null">
+        data,
+      </if>
+      <if test="heards != null">
+        heards,
+      </if>
+      <if test="config != null">
+        config,
+      </if>
+      <if test="json != null">
+        json,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null">
+        #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="heards != null">
+        #{heards,jdbcType=VARCHAR},
+      </if>
+      <if test="config != null">
+        #{config,jdbcType=VARCHAR},
+      </if>
+      <if test="json != null">
+        #{json,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Result">
+    update result
+    <set>
+      <if test="planId != null">
+        plan_id = #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSuccess != null">
+        is_success = #{isSuccess,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="statusCode != null">
+        status_code = #{statusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        data = #{data,jdbcType=VARCHAR},
+      </if>
+      <if test="heards != null">
+        heards = #{heards,jdbcType=VARCHAR},
+      </if>
+      <if test="config != null">
+        config = #{config,jdbcType=VARCHAR},
+      </if>
+      <if test="json != null">
+        json = #{json,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Result">
+    update result
+    set plan_id = #{planId,jdbcType=VARCHAR},
+      is_success = #{isSuccess,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      status_code = #{statusCode,jdbcType=VARCHAR},
+      data = #{data,jdbcType=VARCHAR},
+      heards = #{heards,jdbcType=VARCHAR},
+      config = #{config,jdbcType=VARCHAR},
+      json = #{json,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
