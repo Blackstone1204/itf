@@ -26,9 +26,9 @@
   </delete>
   <insert id="insert" parameterType="com.model.Directive">
     insert into directive (id, target_id, type, 
-      info,sequence,is_delete)
+      info,sequence)
     values (#{id,jdbcType=VARCHAR}, #{targetId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{info,jdbcType=VARCHAR}, #{sequence,jdbcType=VARCHAR},#{isDelete,jdbcType=VARCHAR})
+      #{info,jdbcType=VARCHAR}, #{sequence,jdbcType=VARCHAR})
   </insert>
  
   
