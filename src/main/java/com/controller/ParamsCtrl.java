@@ -47,8 +47,6 @@ public class ParamsCtrl {
 			p.setId(id);
 			paramInfoService.addParamInfo(p);
 			
-			System.out.println(p.getK());
-			
 			a.add(id);
 			
 		}

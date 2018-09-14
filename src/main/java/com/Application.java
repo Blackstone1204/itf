@@ -13,7 +13,7 @@ import com.config.JwtAuthenticationFilter;
 public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);// 实现调用1，不需要部署tomcat,直接run
+		SpringApplication.run(Application.class, args);// 实现调用，不需要部署tomcat,直接run
 	}
 
 	@Bean
