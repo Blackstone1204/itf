@@ -56,6 +56,12 @@ public class DirectiveCtrl {
 		
 	}
 	
+	@GetMapping("/api/directive/query")
+	public Response query(String targetId){
+		List<Directive> list=directiveService.queryByTargetId(targetId);
+		return new Response(1,String.format("",targetId),list);
+		
+	}
 	
 
 }

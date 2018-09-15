@@ -11,7 +11,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, target_id, k, v, is_delete
+    id,target_id,k,v,is_delete
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

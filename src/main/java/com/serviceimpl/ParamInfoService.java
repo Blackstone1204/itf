@@ -44,4 +44,10 @@ public class ParamInfoService implements IParamInfoService{
 		
 	}
 
+	@Override
+	public List<ParamInfo> queryParamInfoByTargetId(String targetId) {
+		// TODO Auto-generated method stub
+		return pm.selectByTargetId(targetId);
+	}
+
 }

@@ -39,22 +39,33 @@ public class ParamsCtrl {
 	private IdGenerator gen;
 	
 	@PostMapping("/api/paramInfo/add")
-	public Response login(@RequestBody List<ParamInfo> params){
+	public Response login(@RequestBody List<ParamInfo> paramInfo){
 		List<String> a=new ArrayList<String>();
 		
-		for(ParamInfo p:params){
+		for(ParamInfo p:paramInfo){
 			String id=gen.getMd5Id();
 			p.setId(id);
 			paramInfoService.addParamInfo(p);
+			
+			System.out.println(String.format("key=%s value=%s targetId=%s", p.getK(),p.getV(),p.getTargetId()));
 			
 			a.add(id);
 			
 		}
 		
 		
-		return new Response(1,String.format("添加%s的参数信息成功",params.get(0).getTargetId()),a);
+		return new Response(1,String.format("添加%s的参数信息成功",paramInfo.get(0).getTargetId()),a);
 		
 	}
+	
+	@GetMapping("/api/paramInfo/query")
+	public Response query(String targetId){
+		List<ParamInfo> list=paramInfoService.queryParamInfoByTargetId(targetId);
+		return new Response(1,String.format("查询targetId=%s的参数信息", targetId),list);
+		
+	}
+	
+	
 	
 	
 

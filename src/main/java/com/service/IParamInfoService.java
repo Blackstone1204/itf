@@ -9,5 +9,6 @@ public interface IParamInfoService {
 	public void delParamInfoById(String id);
 	public void updateParamInfoById(ParamInfo info);
 	public List<ParamInfo> queryParamInfoById(String id);
+	public List<ParamInfo> queryParamInfoByTargetId(String targetId);
 
 }

@@ -43,7 +43,7 @@ public class ParamInfo {
         return k;
     }
 
-    public void setK(String key) {
+    public void setK(String k) {
         this.k = k== null ? null : k.trim();
     }
 
