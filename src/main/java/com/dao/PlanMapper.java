@@ -5,14 +5,9 @@ import java.util.List;
 import com.model.Plan;
 
 public interface PlanMapper {
-    void deleteByPrimaryKey(String id);
+	public List<Plan> selectAll();
+	public void deleteByPrimaryKey(String id);
+    public void insert(Plan plan); 
+    public void updateByPrimaryKey(Plan plan);
 
-    void insert(Plan record);
-
-    List<Plan> selectByPrimaryKey(String id);
-    
-    List<String>  selectTargetById(String id);
-
-    void updateByPrimaryKey(Plan record);
-    
 }

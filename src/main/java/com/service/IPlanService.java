@@ -5,10 +5,9 @@ import java.util.List;
 import com.model.Plan;
 
 public interface IPlanService {
-	public void addPlan(Plan plan);
-	public void delPlanById(String id);
-	public void updatePlan(Plan plan);
-	public List<Plan> queryPlanById(String id);
-	public void carryOut(String id);
+	
+	public List<Plan> queryAll();
+	public void  update(Plan plan);
+	public void add(Plan plan);
 
 }

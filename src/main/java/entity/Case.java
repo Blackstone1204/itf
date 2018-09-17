@@ -16,7 +16,8 @@ import com.utils.Dispatcher;
 public class Case extends Target{
 	
 	@Autowired DirectiveService driectiveService;
-
+	
+	private String ext;//计划case parent路径描述
 	
 	private List<Case> children=new ArrayList<Case>();
 	private List<ParamInfo> params=new ArrayList<ParamInfo>();	
@@ -113,6 +114,14 @@ public class Case extends Target{
 
 	public void setDirectives(List<Directive> directives) {
 		this.directives = directives;
+	}
+
+	public String getExt() {
+		return ext;
+	}
+
+	public void setExt(String ext) {
+		this.ext = ext;
 	}
 
 }

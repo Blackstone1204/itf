@@ -28,7 +28,7 @@ public class TargetService implements ITargetService {
 		// TODO Auto-generated method stub
 	
 		List<Case> chainNodes=new ArrayList<Case>();
-		List<Target> chains=new ArrayList<Target>();
+		
 		List<Target> all = targetMapper.selectTopChildren();
 		for(Target t:all){
 			chainNodes.add(getChain(t));
@@ -62,10 +62,15 @@ public class TargetService implements ITargetService {
 	
 		List<Target> list=targetMapper.selectChildren(start.getId());
 		List<Case> cns=Case.fromTarget(list);
+		String ext=targetMapper.selectByPrimaryKey(start.getParentId()).getTitle();
 		
-		if(cns.size()<1)return;
+		if(cns.size()<1){
+			
+			start.setExt(ext);
+			return;
+		}
 		else{
-		
+			start.setExt(ext+".");
 			start.setChild(cns);
 			
 		}
@@ -88,6 +93,12 @@ public class TargetService implements ITargetService {
 	@Override
 	public void add(Target target) {
 		// TODO Auto-generated method stub
+		
+		String parentId=target.getParentId();
+		Target parent=targetMapper.selectByPrimaryKey(parentId);
+		String level=parent.getLev();
+		String current=level+1;
+		target.setLev(current);
 		targetMapper.insert(target);
 	}
 

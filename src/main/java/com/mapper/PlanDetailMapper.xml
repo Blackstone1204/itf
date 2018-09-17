@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PlanDetailMapper">
+  <resultMap id="BaseResultMap" type="com.model.PlanDetail">
+    <constructor>
+      <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="target_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="step" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ext" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_delete" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, target_id,step,title,ext,is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plan_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from plan_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.PlanDetail">
+    insert into plan_detail (id, target_id, step, 
+      title,ext,is_delete)
+    values (#{id,jdbcType=VARCHAR}, #{targetId,jdbcType=VARCHAR}, #{step,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR},#{ext,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.model.PlanDetail">
+    update plan_detail
+    set target_id = #{targetId,jdbcType=VARCHAR},
+      step = #{step,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
