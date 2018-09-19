@@ -52,6 +52,27 @@ public class PlanCtrl {
 		
 	}
 	
+	@PostMapping("/api/plan/del")
+	public Response del(String id){
+		
+		List<Plan> list=planService.queryByPlanId(id);
+		if(list.size()<1)return new Response(101,"plan del faild id="+id,id);
+		Plan plan=list.get(0);
+		plan.setIsDelete("1");
+		planService.update(plan);
+		
+		return new Response(1,"plan del id="+id,id);
+		
+	}
+	
+	@PostMapping("/api/plan/update")
+	public Response update(Plan plan){
+		
+		planService.update(plan);
+		return  new Response(1,"plan update success",plan.getId());
+		
+	}
+	
 
 	
 	

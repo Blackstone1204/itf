@@ -13,52 +13,32 @@ import com.model.Target;
 import com.serviceimpl.DirectiveService;
 import com.utils.Dispatcher;
 
-public class Case extends Target{
+/**
+ * 
+ * @author 97140
+ *树菜单部分的结构组成
+ */
+public class Node extends Target{
 	
 	@Autowired DirectiveService driectiveService;
 	
 	private String ext;//计划case parent路径描述
 	
-	private List<Case> children=new ArrayList<Case>();
+	private List<Node> children=new ArrayList<Node>();
 	private List<ParamInfo> params=new ArrayList<ParamInfo>();	
 	private List<Directive> directives=new ArrayList<Directive>();
 	
 	
 	
-	public void dispatch(){
-		System.out.println(String.format("%s=>执行请求操作", this.getId()));
-		
-	}
-	
-	public void before(){
-		System.out.println(String.format("%s=>执行前置", this.getId()));
-		
-		
-		
-	}
-	
-	public void after(){
-		System.out.println(String.format("%s=>执行后置", this.getId()));
-		List<Directive> directives=driectiveService.queryByTargetId(this.getId());
-		for(Directive directive:directives){
-			String info=directive.getInfo();
-			System.out.println(String.format("%s=>执行后置=>%s", this.getId(),info));
-			Dispatcher.dispatch(directive.getInfo(), Dispatcher.getMap());
-		}
-		
-	}
-	
-
-	
-	public static Case fromTarget(Target t){
+	public static Node fromTarget(Target t){
 		
 		return fromTarget(t,null,null);
 		
 	}
 	
 
-	public static Case fromTarget(Target t,List<ParamInfo>params,List<Directive>directives){
-		Case node=new Case();
+	public static Node fromTarget(Target t,List<ParamInfo>params,List<Directive>directives){
+		Node node=new Node();
 		node.setId(t.getId());
 		node.setAccountId(t.getAccountId());
 		node.setDomain(t.getDomain());
@@ -75,8 +55,8 @@ public class Case extends Target{
 		
 	}
 	
-	public static List<Case> fromTarget(List<Target> list){
-		List<Case> nodes=new ArrayList<Case>();
+	public static List<Node> fromTarget(List<Target> list){
+		List<Node> nodes=new ArrayList<Node>();
 		for(Target t:list){
 			nodes.add(fromTarget(t));
 			
@@ -85,17 +65,17 @@ public class Case extends Target{
 		return nodes;
 	}
 	
-	public void addChild(Case node){
+	public void addChild(Node node){
 		this.children.add(node);
 		
 	}
 	
-	public void setChild(List<Case> children){
+	public void setChild(List<Node> children){
 		this.children=children;
 		
 	}
 	
-	public List<Case> getChild(){
+	public List<Node> getChild(){
 		return children;
 	}
 	

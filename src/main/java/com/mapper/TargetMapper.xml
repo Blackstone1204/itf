@@ -11,6 +11,8 @@
       <arg column="lev" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="account_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="method" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="content_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_mock" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_dir" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="is_delete" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="create_time" javaType="java.lang.String" jdbcType="TIMESTAMP" />
@@ -18,7 +20,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id,title , domain, url, parent_id, lev, account_id,method,is_dir,is_delete,create_time,update_time
+    id,title , domain, url, parent_id, lev, account_id,method,content_type,is_mock,is_dir,is_delete,create_time,update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -50,10 +52,10 @@
   <insert id="insert" parameterType="com.model.Target">
     insert into target (id, title, domain, 
       url, parent_id, lev, 
-      account_id,method,is_dir)
+      account_id,method,content_type,is_mock,is_dir)
     values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{lev,jdbcType=VARCHAR}, 
-      #{accountId,jdbcType=VARCHAR},#{method,jdbcType=VARCHAR},#{isDir,jdbcType=VARCHAR})
+      #{accountId,jdbcType=VARCHAR},#{method,jdbcType=VARCHAR},#{contentType,jdbcType=VARCHAR},#{isMock,jdbcType=VARCHAR},#{isDir,jdbcType=VARCHAR})
   </insert>
   
   <update id="updateByPrimaryKey" parameterType="com.model.Target">
@@ -65,6 +67,8 @@
       lev = #{lev,jdbcType=VARCHAR},
       account_id = #{accountId,jdbcType=VARCHAR},
       method = #{method,jdbcType=VARCHAR},
+      content_type = #{contentType,jdbcType=VARCHAR},
+      is_mock = #{isMock,jdbcType=VARCHAR},
       is_dir= #{isDir,jdbcType=VARCHAR},
       is_delete= #{isDelete,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}

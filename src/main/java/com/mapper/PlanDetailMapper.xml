@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.model.PlanDetail">
     <constructor>
       <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="plan_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="target_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="step" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -12,28 +13,36 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, target_id,step,title,ext,is_delete
+    id,plan_id,target_id,step,title,ext,is_delete
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from plan_detail
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR} and is_delete='0'
+  </select>
+  
+  <select id="selectAllByPlanId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plan_detail
+    where plan_id = #{planId,jdbcType=VARCHAR} and is_delete='0'
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from plan_detail
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.model.PlanDetail">
-    insert into plan_detail (id, target_id, step, 
+    insert into plan_detail (id,plan_id,target_id, step, 
       title,ext,is_delete)
-    values (#{id,jdbcType=VARCHAR}, #{targetId,jdbcType=VARCHAR}, #{step,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR},#{plan_id,jdbcType=VARCHAR}, #{targetId,jdbcType=VARCHAR}, #{step,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR},#{ext,jdbcType=VARCHAR}, #{isDelete,jdbcType=VARCHAR})
   </insert>
   
   <update id="updateByPrimaryKey" parameterType="com.model.PlanDetail">
     update plan_detail
     set target_id = #{targetId,jdbcType=VARCHAR},
+      plan_id = #{planId,jdbcType=VARCHAR},
       step = #{step,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       ext = #{ext,jdbcType=VARCHAR},

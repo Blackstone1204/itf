@@ -2,7 +2,7 @@ package com.model;
 
 import entity.Piper;
 
-public class Target extends Piper {
+public class Target {
     private String id;
 
     private String title;
@@ -124,23 +124,7 @@ public class Target extends Piper {
         this.isDelete = isDelete == null ? null : isDelete.trim();
     }
 
-	@Override
-	public void before() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dispatch() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void after() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	public String getUpdateTime() {
 		return updateTime;

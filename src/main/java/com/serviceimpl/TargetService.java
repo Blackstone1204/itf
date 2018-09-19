@@ -15,7 +15,7 @@ import com.dao.TargetMapper;
 import com.model.Target;
 import com.service.ITargetService;
 
-import entity.Case;
+import entity.Node;
 @Service
 public class TargetService implements ITargetService {
 
@@ -24,10 +24,10 @@ public class TargetService implements ITargetService {
 
 
 	@Override
-	public List<Case> queryAll() {
+	public List<Node> queryAll() {
 		// TODO Auto-generated method stub
 	
-		List<Case> chainNodes=new ArrayList<Case>();
+		List<Node> chainNodes=new ArrayList<Node>();
 		
 		List<Target> all = targetMapper.selectTopChildren();
 		for(Target t:all){
@@ -50,18 +50,18 @@ public class TargetService implements ITargetService {
 		return targetMapper.selectChildren(id);
 	}
 	
-	private Case getChain(Target t){
-		Case root=Case.fromTarget(t);
+	private Node getChain(Target t){
+		Node root=Node.fromTarget(t);
 		toNodeChain(root);
 		
 		return root;	
 	
 	}
 
-	private void  toNodeChain(Case start) {
+	private void  toNodeChain(Node start) {
 	
 		List<Target> list=targetMapper.selectChildren(start.getId());
-		List<Case> cns=Case.fromTarget(list);
+		List<Node> cns=Node.fromTarget(list);
 		String ext=targetMapper.selectByPrimaryKey(start.getParentId()).getTitle();
 		
 		if(cns.size()<1){
@@ -76,7 +76,7 @@ public class TargetService implements ITargetService {
 		}
 		//
 		
-		for(Case cn:cns){
+		for(Node cn:cns){
 			toNodeChain(cn);
 			
 		}

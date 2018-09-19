@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.model.Target;
 
-import entity.Case;
+import entity.Node;
 
 public interface ITargetService {
 	
-	public List<Case> queryAll();
+	public List<Node> queryAll();
 	
 	public List<Target> querySub(String parentId);
 	

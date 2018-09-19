@@ -4,33 +4,36 @@
   <resultMap id="BaseResultMap" type="com.model.Plan">
     <constructor>
       <idArg column="id" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="plan_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="is_delete" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, plan_id,name
+    id,name,is_delete
   </sql>
   <select id="selectAll" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from plan
-
+    from plan where is_delete='0'
+  </select>
+  
+  <select id="selectByPlanId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plan where id = #{id,jdbcType=VARCHAR} and is_delete='0'
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from plan
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.model.Plan">
-    insert into role (id, plan_id,name
-      )
-    values (#{id,jdbcType=VARCHAR}, #{plan_id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
-      )
+    insert into plan (id,name)
+    values (#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.model.Plan">
     update role
-    set plan_id = #{plan_id,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR}
+    set name = #{name,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

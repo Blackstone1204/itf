@@ -33,4 +33,16 @@ public class PlanService implements IPlanService {
 
 	}
 
+	@Override
+	public List<Plan> queryByPlanId(String id) {
+		// TODO Auto-generated method stub
+		return planMapper.selectByPlanId(id);
+	}
+
+	@Override
+	public void run(String planId) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
