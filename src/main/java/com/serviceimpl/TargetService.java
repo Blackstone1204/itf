@@ -62,7 +62,8 @@ public class TargetService implements ITargetService {
 	
 		List<Target> list=targetMapper.selectChildren(start.getId());
 		List<Node> cns=Node.fromTarget(list);
-		String ext=targetMapper.selectByPrimaryKey(start.getParentId()).getTitle();
+//		String ext=targetMapper.selectByPrimaryKey(start.getParentId()).getTitle();
+		String ext="";
 		
 		if(cns.size()<1){
 			

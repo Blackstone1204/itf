@@ -2,6 +2,8 @@ package com.model;
 
 public class PlanDetail {
     private String id;
+    
+    private String planId;
 
     private String targetId;
 
@@ -13,8 +15,9 @@ public class PlanDetail {
 
     private String isDelete;
 
-    public PlanDetail(String id, String targetId, String step, String title, String isDelete) {
+    public PlanDetail(String id,String planId, String targetId, String step, String title, String isDelete) {
         this.id = id;
+        this.setPlanId(planId);
         this.targetId = targetId;
         this.step = step;
         this.title = title;
@@ -71,5 +74,13 @@ public class PlanDetail {
 
 	public void setExt(String ext) {
 		this.ext = ext;
+	}
+
+	public String getPlanId() {
+		return planId;
+	}
+
+	public void setPlanId(String planId) {
+		this.planId = planId;
 	}
 }

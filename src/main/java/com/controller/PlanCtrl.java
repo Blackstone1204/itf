@@ -45,6 +45,7 @@ public class PlanCtrl {
 	public Response add(@RequestBody Plan plan){
 		
 		String id=gen.getMd5Id();
+		plan.setId(id);
 		planService.add(plan);
 
 
@@ -73,7 +74,20 @@ public class PlanCtrl {
 		
 	}
 	
-
+	@GetMapping("/api/plan/queryAll")
+	public Response queryAll(){
+		
+		return  new Response(1,"plan update success",planService.queryAll());
+		
+	}
+	
+	
+	@GetMapping("/api/plan/queryCount")
+	public Response queryCount(){
+		
+		return  new Response(1,"query plan count",planService.queryAll().size());
+		
+	}
 	
 	
 	

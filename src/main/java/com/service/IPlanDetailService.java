@@ -5,7 +5,7 @@ import java.util.List;
 import com.model.PlanDetail;
 
 public interface IPlanDetailService {
-	public void addOneDetail(PlanDetail planDetail);
+	public void addDetail(PlanDetail planDetail);
 	public void delOneDetailById(String id);
 	public void updateOneDetail(PlanDetail planDetail);
 	public List<PlanDetail> queryOneDetailById(String id);

@@ -3,12 +3,13 @@ package com.serviceimpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.dao.PlanDetailMapper;
 import com.dao.PlanMapper;
 import com.model.Plan;
 import com.service.IPlanService;
-
+@Service
 public class PlanService implements IPlanService {
 
 	@Autowired 

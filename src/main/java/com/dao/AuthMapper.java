@@ -18,4 +18,6 @@ public interface AuthMapper {
     List<Auth> selectByRoleI(@Param("roldId") String roleId);
 
     void updateByPrimaryKey(Auth record);
+    
+    void updateByPrimaryKeySelective(Auth record);
 }

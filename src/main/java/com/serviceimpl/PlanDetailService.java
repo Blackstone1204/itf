@@ -11,6 +11,7 @@ import com.dao.TargetMapper;
 import com.model.PlanDetail;
 import com.model.Target;
 import com.service.IPlanDetailService;
+import com.utils.IdGenerator;
 
 import entity.Response;
 @Service
@@ -20,11 +21,45 @@ public class PlanDetailService implements IPlanDetailService {
 	PlanDetailMapper planDetailMapper;
 	@Autowired
 	TargetMapper targetMapper;
+	
+	@Autowired IdGenerator gen;
 
 	@Override
-	public void addOneDetail(PlanDetail plan) {
+	public void addDetail(PlanDetail planDetail) {
 		// TODO Auto-generated method stub
-		planDetailMapper.insert(plan);
+		//planDetailMapper.insert(plan);
+		String planId=planDetail.getPlanId();
+		String targetId=planDetail.getTargetId();
+		Target target=targetMapper.selectByPrimaryKey(targetId);
+		String type=target.getIsDir();
+		
+		System.out.println(String.format("新增计划=>planID=%s targetId=%s type=%s", planId,targetId,type));
+		
+		
+		if("1".equals(type)){
+			List<Target> list=targetMapper.selectChildren(targetId);
+			for(Target item:list){
+				String title=item.getTitle();
+				PlanDetail pd=new PlanDetail();
+				pd.setTitle(title);
+				pd.setPlanId(planId);
+				pd.setTargetId(item.getId());
+				pd.setStep("");
+				pd.setId(gen.getMd5Id());
+				planDetailMapper.insert(pd);
+					
+			}
+			
+		}else{
+			PlanDetail pd=new PlanDetail();
+			pd.setId(gen.getMd5Id());
+			pd.setTitle(target.getTitle());
+			pd.setPlanId(planId);
+			pd.setTargetId(target.getId());
+			pd.setStep("");
+			planDetailMapper.insert(pd);
+			
+		}
 		
 	}
 

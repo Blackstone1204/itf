@@ -6,6 +6,17 @@ public class Plan {
 	private String name;
 	private String isDelete;
 	
+	public Plan(){
+		super();
+	}
+	
+	public Plan(String id,String name,String isDelete){
+		this.id=id;
+		this.name=name;
+		this.isDelete=isDelete;
+		
+	}
+	
 	public String getId() {
 		return id;
 	}

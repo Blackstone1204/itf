@@ -18,6 +18,10 @@ public class Target {
     private String accountId;
 
     private String method;
+    
+    private String contentType;
+    
+    private String isMock;
 
     private String isDir;
 
@@ -26,7 +30,7 @@ public class Target {
     private String createTime;
     private String updateTime;
 
-    public Target(String id, String title, String domain, String url, String parentId, String lev, String accountId, String method, String isDir, String isDelete,String createTime,
+    public Target(String id, String title, String domain, String url, String parentId, String lev, String accountId, String method, String contentType,String isMock,String isDir, String isDelete,String createTime,
     String updateTime) {
         this.id = id;
         this.title = title;
@@ -36,6 +40,8 @@ public class Target {
         this.lev = lev;
         this.accountId = accountId;
         this.method = method;
+        this.contentType=contentType;
+        this.isMock=isMock;
         this.isDir = isDir;
         this.isDelete = isDelete;
     }
@@ -140,5 +146,21 @@ public class Target {
 
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+	public String getIsMock() {
+		return isMock;
+	}
+
+	public void setIsMock(String isMock) {
+		this.isMock = isMock;
 	}
 }

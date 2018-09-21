@@ -14,7 +14,7 @@ public class AuthService implements IAuthService{
 	@Autowired
 	AuthMapper authMapper;
 	public void updateAuth(Auth auth){
-		authMapper.updateByPrimaryKey(auth);
+		authMapper.updateByPrimaryKeySelective(auth);
 	}
 	@Override
 	public void addAuth(Auth auth) {

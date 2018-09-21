@@ -31,7 +31,7 @@ public class RoleService implements IRoleService {
 	@Override
 	public void updateRole(Role role) {
 		// TODO Auto-generated method stub
-		roleMapper.updateByPrimaryKey(role);
+		roleMapper.updateByPrimaryKeySelective(role);
 
 	}
 
@@ -41,6 +41,12 @@ public class RoleService implements IRoleService {
 		
 		return roleMapper.selectByPrimaryKey(id);
 
+	}
+
+	@Override
+	public List<Role> queryAll() {
+		// TODO Auto-generated method stub
+		return roleMapper.selectAll();
 	}
 
 }
