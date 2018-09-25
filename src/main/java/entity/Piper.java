@@ -8,7 +8,10 @@ public abstract class Piper {
 	public abstract void after();
 	
 	public void process(){
+		this.before();
 		this.dispatch();
+		this.after();
+		
 		if(null!=this.next){
 			
 			//System.out.println(this.next);

@@ -11,7 +11,11 @@ public interface DirectiveMapper {
 
     int insert(Directive record);
 
-    List<Directive> selectByTargetId(String id);
+    List<Directive> selectBeforeByTargetId(String id);
+
+    List<Directive> selectAfterByTargetId(String id);
+    
+    List<Directive> selectAllByTargetId(String id);
 
     int updateByPrimaryKey(Directive record);
 }

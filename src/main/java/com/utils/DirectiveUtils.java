@@ -48,7 +48,11 @@ public class DirectiveUtils {
 	
 	
 
-	public static Object dispatch(String jexlExp,Map<String,Object> map){  
+	public static Object dispatch(String jexlExp){  
+		
+		System.out.println("调用指令 => "+jexlExp);
+		
+     
        JexlEngine jexl=new JexlEngine();  
        Expression e = jexl.createExpression(jexlExp);  
        JexlContext jc = new MapContext();  
@@ -56,6 +60,7 @@ public class DirectiveUtils {
            jc.set(key, map.get(key));  
        }  
        if(null==e.evaluate(jc)){  
+    	   System.out.println("指令不合法！");
            return "";  
        }  
        return e.evaluate(jc);  

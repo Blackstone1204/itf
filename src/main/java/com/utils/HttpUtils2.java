@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -34,6 +35,7 @@ import org.springframework.stereotype.Component;
 public class HttpUtils2 {
 	public static Map<String, ContentType> map = new HashMap<String, ContentType>();
 	static {
+		map.put("kv",null);
 		map.put("json", ContentType.APPLICATION_JSON);
 		map.put("xml", ContentType.APPLICATION_XML);
 		map.put("javascript", ContentType.APPLICATION_JSON);
@@ -233,6 +235,10 @@ public class HttpUtils2 {
 			}
 		}
 		return null;
+	}
+	
+	public static Set<String> getKeys(){
+		return  map.keySet();
 	}
 
 }

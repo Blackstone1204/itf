@@ -15,9 +15,23 @@ public class DirectiveService implements IDirectiveService{
 	DirectiveMapper directiveMapper;
 
 	@Override
-	public List<Directive> queryByTargetId(String targetId) {
+	public List<Directive> queryBeforeByTargetId(String targetId) {
 		// TODO Auto-generated method stub
-		return directiveMapper.selectByTargetId(targetId);
+		return directiveMapper.selectBeforeByTargetId(targetId);
+		
+	}
+
+	@Override
+	public List<Directive> queryAfterByTargetId(String targetId) {
+		// TODO Auto-generated method stub
+		return directiveMapper.selectAfterByTargetId(targetId);
+		
+	}
+	
+	@Override
+	public List<Directive> queryAllByTargetId(String targetId) {
+		// TODO Auto-generated method stub
+		return directiveMapper.selectAllByTargetId(targetId);
 		
 	}
 

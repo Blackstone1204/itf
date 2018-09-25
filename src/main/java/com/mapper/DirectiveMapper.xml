@@ -14,12 +14,27 @@
   <sql id="Base_Column_List">
     id, target_id, type, info,sequence ,is_delete
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+ 
+   <select id="selectAllByTargetId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from directive
-    where id = #{id,jdbcType=VARCHAR}
+    where target_id = #{targetId,jdbcType=VARCHAR} 
   </select>
+  <select id="selectBeforeByTargetId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from directive
+    where target_id = #{targetId,jdbcType=VARCHAR} and type=0
+  </select>
+  
+  <select id="selectAftersByTargetId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from directive
+    where target_id = #{targetId,jdbcType=VARCHAR} and type=1
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from directive
     where id = #{id,jdbcType=VARCHAR}
