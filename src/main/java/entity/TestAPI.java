@@ -17,7 +17,7 @@ import com.utils.DirectiveUtils;
 import com.utils.Dispatcher;
 import com.utils.HttpUtils2;
 
-public class Test extends Piper{
+public class TestAPI extends Piper{
 	
 	@Autowired ParamInfoMapper paramInfoMapper;
 	@Autowired DirectiveMapper directiveMapper;
@@ -31,7 +31,7 @@ public class Test extends Piper{
 	private List<Directive> before=new ArrayList<Directive>();
 	private List<Directive>  after=new ArrayList<Directive>();
 	
-	public Test(Plan plan,Target target){
+	public TestAPI(Plan plan,Target target){
 		this.plan=plan;
 		this.contentType="";
 		this.target=target;
